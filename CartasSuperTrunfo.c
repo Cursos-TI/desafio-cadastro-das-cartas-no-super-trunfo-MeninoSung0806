@@ -132,6 +132,30 @@ void cadastrar_cidade(char codigo_carta[5], char nome[50], int *populacao, float
     sprintf(codigo_carta, "%c%02d", estado, codigo_cidade);
 }
 
+// Nova função para comparar um atributo específico
+void comparar_por_atributo(
+    char codigo_carta1[5], char nome1[50], int populacao1, float area1, float pib1, int pontos_turisticos1,
+    char codigo_carta2[5], char nome2[50], int populacao2, float area2, float pib2, int pontos_turisticos2
+) {
+    // Escolha do atributo para comparação (neste caso, População)
+    int atributo_carta1 = populacao1;
+    int atributo_carta2 = populacao2;
+
+    // Exibe os valores do atributo escolhido
+    printf("\n--- Comparação de Cartas (Atributo: População) ---\n");
+    printf("Carta 1 - %s (%s): %d\n", nome1, codigo_carta1, atributo_carta1);
+    printf("Carta 2 - %s (%s): %d\n", nome2, codigo_carta2, atributo_carta2);
+
+    // Determina a carta vencedora
+    if (atributo_carta1 > atributo_carta2) {
+        printf("Resultado: Carta 1 (%s) venceu!\n", nome1);
+    } else if (atributo_carta2 > atributo_carta1) {
+        printf("Resultado: Carta 2 (%s) venceu!\n", nome2);
+    } else {
+        printf("Resultado: As cartas têm o mesmo valor para o atributo escolhido.\n");
+    }
+}
+
 int main() {
     // Variáveis para a primeira cidade
     char codigo_carta1[5], nome1[50];
@@ -150,8 +174,14 @@ int main() {
     printf("\n=== Cadastro da Segunda Cidade ===\n");
     cadastrar_cidade(codigo_carta2, nome2, &populacao2, &area2, &pib2, &pontos_turisticos2);
 
-    // Compara as cidades
+    // Compara as cidades (usando a função original)
     comparar_cidades(
+        codigo_carta1, nome1, populacao1, area1, pib1, pontos_turisticos1,
+        codigo_carta2, nome2, populacao2, area2, pib2, pontos_turisticos2
+    );
+
+    // Compara as cidades por um atributo específico (usando a nova função)
+    comparar_por_atributo(
         codigo_carta1, nome1, populacao1, area1, pib1, pontos_turisticos1,
         codigo_carta2, nome2, populacao2, area2, pib2, pontos_turisticos2
     );
